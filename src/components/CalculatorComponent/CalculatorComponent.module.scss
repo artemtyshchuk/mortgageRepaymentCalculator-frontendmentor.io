@@ -1,1 +1,295 @@
-.calculatorComponent {}
+.calculatorComponent {
+  margin-top: 12%;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: #fff;
+  border-radius: 24px;
+}
+
+.formSideContainer {
+  padding: 40px;
+}
+
+.formSideHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formSideHeaderTitle {
+  color: var(--color-slate-900, #133041);
+  margin: 0;
+  /* desktop/text-preset-2 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-2, 24px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%; /* 30px */
+}
+
+.formSideHeaderButton {
+  background: inherit;
+  border: none;
+  cursor: pointer;
+
+  color: var(--color-slate-700, #4e6e7e);
+
+  /* desktop/text-preset-4 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-4, 16px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 24px */
+  text-decoration-line: underline;
+}
+
+.mortgageAmountContainer {
+  margin-top: 40px;
+}
+
+.inputTitle {
+  color: var(--color-slate-700, #4e6e7e);
+
+  /* desktop/text-preset-4 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-4, 16px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 24px */
+}
+
+.inputContainer {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  align-items: center;
+  margin-top: 12px;
+  height: 48px;
+  border-radius: 4px;
+  border: 1px solid var(--color-slate-500, #6b94a8);
+}
+
+.currencyContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e4f4fd;
+  height: 100%;
+  border-radius: 4px 0px 0px 4px;
+}
+
+.currency {
+  color: var(--color-slate-700, #4e6e7e);
+  margin: 0;
+  /* desktop/text-preset-3 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-3, 18px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%; /* 22.5px */
+}
+
+.input {
+  border: none;
+  background: inherit;
+  outline: none;
+  padding: 0 16px;
+
+  color: var(--color-slate-900, #133041);
+
+  /* desktop/text-preset-3 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-3, 18px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%; /* 22.5px */
+}
+
+.mortgageTermAndInterestRateContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 24px;
+  margin-top: 24px;
+}
+
+.inputContainers {
+  display: grid;
+  grid-template-columns: 145px 1fr;
+  align-items: center;
+  margin-top: 12px;
+  height: 48px;
+  border-radius: 4px;
+  border: 1px solid var(--color-slate-500, #6b94a8);
+}
+
+.resultSideContainer {
+  background-color: #133041;
+  padding: 40px;
+  border-radius: 0px 24px 24px 80px;
+}
+
+.inputLabel {
+  color: var(--color-slate-700, #4e6e7e);
+
+  /* desktop/text-preset-3 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-3, 18px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%; /* 22.5px */
+}
+
+.inputLabelContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-radius: 0px 4px 4px 0px;
+  background: var(--color-slate-100, #e4f4fd);
+}
+
+.mortgageTypeContainer {
+  margin-top: 24px;
+}
+
+.radiosContainer {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.radioContainer {
+  margin-top: 12px;
+  border-radius: 4px;
+  border: 1px solid var(--color-slate-500, #6b94a8);
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.selectedRadioContainer {
+  border: 1px solid var(--color-lime, #d8db2f);
+  background: rgba(216, 219, 47, 0.15);
+}
+
+input[type="radio"] {
+  accent-color: #133041;
+}
+
+.inputRadioTitle {
+  color: var(--color-slate-900, #133041);
+  margin-left: 16px;
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-3, 18px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%; /* 22.5px */
+}
+
+.calculateButton {
+  margin-top: 40px;
+  padding: 16px 40px;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-content: center;
+  column-gap: 12px;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-lime, #d8db2f);
+  cursor: pointer;
+}
+
+.calculateButtonText {
+  margin: 0;
+  color: var(--color-slate-900, #133041);
+  text-align: center;
+
+  /* desktop/text-preset-3 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-3, 18px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%; /* 22.5px */
+}
+
+.resultSideTitle {
+  color: var(--color-white, #fff);
+  /* desktop/text-preset-2 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-2, 24px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%; /* 30px */
+}
+
+.resultSideTitle {
+  color: var(--color-white, #fff);
+
+  /* desktop/text-preset-2 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-2, 24px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%; /* 30px */
+}
+
+.resultSideDescription {
+  color: var(--color-slate-300, #9abed5);
+
+  /* desktop/text-preset-4 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-4, 16px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 24px */
+  align-self: stretch;
+}
+
+.resultSideResultsContainer {
+  width: calc(100% - 64px);
+  padding: 32px;
+  border-radius: var(--spacing-100, 8px);
+  border-top: 4px solid var(--color-lime, #d8db2f);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.repaymentsText {
+  color: var(--color-slate-300, #9abed5);
+  margin: 0;
+  /* desktop/text-preset-4 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-4, 16px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 24px */
+}
+
+.repaymentsInfo {
+  color: var(--color-lime, #d8db2f);
+  margin: 0;
+  padding-top: 8px;
+  /* desktop/text-preset-1 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-1, 56px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%; /* 70px */
+}
+
+.divider {
+  display: flex;
+  height: 1px;
+  width: 100%;
+  margin: 32px 0;
+  background: rgba(154, 190, 213, 0.25);
+}
+
+.totalRepaymentsInfo {
+  color: var(--color-white, #fff);
+  margin: 0;
+  padding-top: 8px;
+  /* desktop/text-preset-2 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-2, 24px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%; /* 30px */
+}
