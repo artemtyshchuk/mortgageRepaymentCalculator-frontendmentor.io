@@ -1,27 +1,68 @@
 import { useState } from "react";
 import styles from "./CalculatorComponent.module.scss";
 import { ReactComponent as CalculatorIcon } from "../../assets/images/ph_calculator-fill.svg";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { formData } from "types/types";
 
 interface CalculatorComponentProps {}
 
-type MortgageType = "Repayment" | "Interest Only" | null;
-
 export const CalculatorComponent = ({}: CalculatorComponentProps) => {
-  const [selectedRadioValue, setSelectedRadioValue] =
-    useState<MortgageType>(null);
+  const [monthlyRepayment, setMonthlyRepayment] = useState<number>(0);
+  const [totalRepayments, setTotalRepayments] = useState<number>(0);
 
-  const handleRadioChange = (value: MortgageType) => {
-    setSelectedRadioValue(value);
+  const { register, formState, handleSubmit, reset, watch } = useForm<formData>(
+    {
+      mode: "onChange",
+    }
+  );
+
+  const watchMortgageType = watch("mortgageType");
+
+  const mortgageAmountError = formState.errors["mortgageAmount"]?.message;
+
+  const onSubmit: SubmitHandler<formData> = (data) => {
+    handleCalculateRepayments(data);
+    console.log(data);
+  };
+
+  const handleCalculateRepayments = (data: formData) => {
+    const { mortgageAmount, mortgageTerm, interestRate, mortgageType } = data;
+    const rate = interestRate / 100 / 12;
+    const numberOfPayments = mortgageTerm * 12;
+    let repayment = 0;
+
+    if (mortgageType === "Repayment") {
+      repayment =
+        (mortgageAmount * rate) / (1 - Math.pow(1 + rate, -numberOfPayments));
+    } else if (mortgageType === "Interest Only") {
+      repayment = mortgageAmount * rate;
+    }
+
+    setMonthlyRepayment(repayment);
+    setTotalRepayments(repayment * numberOfPayments);
   };
 
   return (
     <div className={styles.calculatorComponent}>
       {/* formSideContainer */}
-      <form className={styles.formSideContainer}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={styles.formSideContainer}
+      >
         {/* Header */}
         <div className={styles.formSideHeader}>
           <p className={styles.formSideHeaderTitle}>Mortgage Calculator</p>
-          <button className={styles.formSideHeaderButton}>Clear All</button>
+          <button
+            type="button"
+            className={styles.formSideHeaderButton}
+            onClick={() => {
+              reset();
+              setMonthlyRepayment(0);
+              setTotalRepayments(0);
+            }}
+          >
+            Clear All
+          </button>
         </div>
         {/* <-----> */}
         {/* Mortgage Amount */}
@@ -31,7 +72,14 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
             <div className={styles.currencyContainer}>
               <p className={styles.currency}>£</p>
             </div>
-            <input className={styles.input} type="number" />
+            <input
+              className={styles.input}
+              type="number"
+              {...register("mortgageAmount", {
+                required: "This field is required",
+              })}
+            />
+            {mortgageAmountError && <p>{mortgageAmountError}</p>}
           </div>
         </div>
         {/* <-----> */}
@@ -41,7 +89,13 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
           <div>
             <label className={styles.inputTitle}>Mortgage Term</label>
             <div className={styles.inputContainers}>
-              <input className={styles.input} type="number" />
+              <input
+                className={styles.input}
+                type="number"
+                {...register("mortgageTerm", {
+                  required: "This field is required",
+                })}
+              />
               <div className={styles.inputLabelContainer}>
                 <label className={styles.inputLabel}>years</label>
               </div>
@@ -53,7 +107,13 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
           <div>
             <label className={styles.inputTitle}>Interest Rate</label>
             <div className={styles.inputContainers}>
-              <input className={styles.input} type="number" />
+              <input
+                className={styles.input}
+                type="number"
+                {...register("interestRate", {
+                  required: "This field is required",
+                })}
+              />
               <div className={styles.inputLabelContainer}>
                 <label className={styles.inputLabel}>%</label>
               </div>
@@ -69,45 +129,47 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
           {/* General Container */}
           <div className={styles.radiosContainer}>
             {/* Repayment */}
-            <div
+            <label
               className={`${styles.radioContainer} ${
-                selectedRadioValue === "Repayment" &&
+                watchMortgageType === "Repayment" &&
                 styles.selectedRadioContainer
               }`}
-              onClick={() => handleRadioChange("Repayment")}
             >
               <input
                 className={styles.radio}
                 type="radio"
-                name="mortgageType"
-                checked={"Repayment" === selectedRadioValue}
+                value="Repayment"
+                {...register("mortgageType", {
+                  required: "This field is required",
+                })}
               />
-              <label className={styles.inputRadioTitle}>Repayment</label>
-            </div>
+              <span className={styles.inputRadioTitle}>Repayment</span>
+            </label>
             {/* <-----> */}
 
             {/* Interest Only */}
-            <div
+            <label
               className={`${styles.radioContainer} ${
-                selectedRadioValue === "Interest Only" &&
+                watchMortgageType === "Interest Only" &&
                 styles.selectedRadioContainer
               }`}
-              onClick={() => handleRadioChange("Interest Only")}
             >
               <input
                 className={styles.radio}
                 type="radio"
-                name="mortgageType"
-                checked={"Interest Only" === selectedRadioValue}
+                value="Interest Only"
+                {...register("mortgageType", {
+                  required: "This field is required",
+                })}
               />
-              <label className={styles.inputRadioTitle}>Interest Only</label>
-            </div>
+              <span className={styles.inputRadioTitle}>Interest Only</span>
+            </label>
             {/* <-----> */}
           </div>
           {/* <-----> */}
         </div>
 
-        <button className={styles.calculateButton}>
+        <button type="submit" className={styles.calculateButton}>
           <div>
             {" "}
             <CalculatorIcon />
@@ -127,12 +189,16 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
         {/* resultSideResultsContainer */}
         <div className={styles.resultSideResultsContainer}>
           <p className={styles.repaymentsText}>Your monthly repayments</p>
-          <p className={styles.repaymentsInfo}>£1,797.74</p>
+          <p className={styles.repaymentsInfo}>
+            £{monthlyRepayment.toFixed(2)}
+          </p>
           <span className={styles.divider}></span>
           <p className={styles.repaymentsText}>
             Total you'll repay over the term
           </p>
-          <p className={styles.totalRepaymentsInfo}>£539,322.94</p>
+          <p className={styles.totalRepaymentsInfo}>
+            £{totalRepayments.toFixed(2)}
+          </p>
         </div>
         {/* <-----> */}
       </div>
