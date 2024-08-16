@@ -89,6 +89,8 @@
   line-height: 125%; /* 22.5px */
 }
 
+
+
 .input {
   border: none;
   background: inherit;
@@ -292,4 +294,23 @@ input[type="radio"] {
   font-style: normal;
   font-weight: 700;
   line-height: 125%; /* 30px */
+}
+
+.errorText {
+  color: var(--color-red, #d73328);
+  margin: 8px;
+  /* desktop/text-preset-5 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-5, 14px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 21px */
+}
+
+.errorContainer {
+  background-color: #d73328;
+}
+
+.errorInputMark {
+  color: white;
 }

@@ -19,6 +19,9 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
   const watchMortgageType = watch("mortgageType");
 
   const mortgageAmountError = formState.errors["mortgageAmount"]?.message;
+  const mortgageTermError = formState.errors["mortgageTerm"]?.message;
+  const interestRateError = formState.errors["interestRate"]?.message;
+  const mortgageTypeError = formState.errors["mortgageType"]?.message;
 
   const onSubmit: SubmitHandler<formData> = (data) => {
     handleCalculateRepayments(data);
@@ -27,7 +30,7 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
 
   const handleCalculateRepayments = (data: formData) => {
     const { mortgageAmount, mortgageTerm, interestRate, mortgageType } = data;
-    const rate = interestRate / 100 / 12;
+    const rate = interestRate / 100 / 12; //TODO: check the formula
     const numberOfPayments = mortgageTerm * 12;
     let repayment = 0;
 
@@ -69,8 +72,18 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
         <div className={styles.mortgageAmountContainer}>
           <label className={styles.inputTitle}>Mortgage Amount</label>
           <div className={styles.inputContainer}>
-            <div className={styles.currencyContainer}>
-              <p className={styles.currency}>£</p>
+            <div
+              className={`${styles.currencyContainer} ${
+                mortgageAmountError && styles.errorContainer
+              }`}
+            >
+              <p
+                className={`${styles.currency} ${
+                  mortgageAmountError && styles.errorInputMark
+                }`}
+              >
+                £
+              </p>
             </div>
             <input
               className={styles.input}
@@ -79,8 +92,10 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
                 required: "This field is required",
               })}
             />
-            {mortgageAmountError && <p>{mortgageAmountError}</p>}
           </div>
+          {mortgageAmountError && (
+            <p className={styles.errorText}>{mortgageAmountError}</p>
+          )}
         </div>
         {/* <-----> */}
         {/* Mortgage Term and Interest Rate */}
@@ -96,10 +111,23 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
                   required: "This field is required",
                 })}
               />
-              <div className={styles.inputLabelContainer}>
-                <label className={styles.inputLabel}>years</label>
+              <div
+                className={`${styles.inputLabelContainer} ${
+                  mortgageTermError && styles.errorContainer
+                }`}
+              >
+                <label
+                  className={`${styles.inputLabel} ${
+                    mortgageTermError && styles.errorInputMark
+                  }`}
+                >
+                  years
+                </label>
               </div>
             </div>
+            {mortgageTermError && (
+              <p className={styles.errorText}>{mortgageAmountError}</p>
+            )}
           </div>
           {/* <-----> */}
 
@@ -114,11 +142,25 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
                   required: "This field is required",
                 })}
               />
-              <div className={styles.inputLabelContainer}>
-                <label className={styles.inputLabel}>%</label>
+              <div
+                className={`${styles.inputLabelContainer} ${
+                  interestRateError && styles.errorContainer
+                }`}
+              >
+                <label
+                  className={`${styles.inputLabel} ${
+                    interestRateError && styles.errorInputMark
+                  }`}
+                >
+                  %
+                </label>
               </div>
             </div>
+            {interestRateError && (
+              <p className={styles.errorText}>{mortgageAmountError}</p>
+            )}
           </div>
+
           {/* <-----> */}
         </div>
         {/* <-----> */}
@@ -168,6 +210,9 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
           </div>
           {/* <-----> */}
         </div>
+        {mortgageTypeError && (
+          <p className={styles.errorText}>{mortgageAmountError}</p>
+        )}
 
         <button type="submit" className={styles.calculateButton}>
           <div>
