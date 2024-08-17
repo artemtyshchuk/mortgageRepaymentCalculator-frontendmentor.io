@@ -3,6 +3,8 @@ import styles from "./CalculatorComponent.module.scss";
 import { ReactComponent as CalculatorIcon } from "../../assets/images/ph_calculator-fill.svg";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { formData } from "types/types";
+import { ResultsComponent } from "components/ResultsComponent";
+import { PreResultsComponent } from "components/PreResultsComponent";
 
 interface CalculatorComponentProps {}
 
@@ -30,7 +32,7 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
 
   const handleCalculateRepayments = (data: formData) => {
     const { mortgageAmount, mortgageTerm, interestRate, mortgageType } = data;
-    const rate = interestRate / 100 / 12; //TODO: check the formula
+    const rate = interestRate / 100 / 12;
     const numberOfPayments = mortgageTerm * 12;
     let repayment = 0;
 
@@ -71,7 +73,11 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
         {/* Mortgage Amount */}
         <div className={styles.mortgageAmountContainer}>
           <label className={styles.inputTitle}>Mortgage Amount</label>
-          <div className={styles.inputContainer}>
+          <div
+            className={`${styles.inputContainer} ${
+              mortgageAmountError && styles.inputContainerError
+            }`}
+          >
             <div
               className={`${styles.currencyContainer} ${
                 mortgageAmountError && styles.errorContainer
@@ -103,7 +109,11 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
           {/* Mortgage Term */}
           <div>
             <label className={styles.inputTitle}>Mortgage Term</label>
-            <div className={styles.inputContainers}>
+            <div
+              className={`${styles.inputContainers} ${
+                mortgageTermError && styles.inputContainerError
+              }`}
+            >
               <input
                 className={styles.input}
                 type="number"
@@ -134,7 +144,11 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
           {/* Interest Rate */}
           <div>
             <label className={styles.inputTitle}>Interest Rate</label>
-            <div className={styles.inputContainers}>
+            <div
+              className={`${styles.inputContainers} ${
+                interestRateError && styles.inputContainerError
+              }`}
+            >
               <input
                 className={styles.input}
                 type="number"
@@ -206,13 +220,14 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
               />
               <span className={styles.inputRadioTitle}>Interest Only</span>
             </label>
+            {mortgageTypeError && (
+              <p className={styles.errorText}>{mortgageTypeError}</p>
+            )}
             {/* <-----> */}
           </div>
+
           {/* <-----> */}
         </div>
-        {mortgageTypeError && (
-          <p className={styles.errorText}>{mortgageAmountError}</p>
-        )}
 
         <button type="submit" className={styles.calculateButton}>
           <div>
@@ -225,27 +240,14 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
       {/* <-----> */}
       {/* resultSideContainer */}
       <div className={styles.resultSideContainer}>
-        <p className={styles.resultSideTitle}>Your results</p>
-        <p className={styles.resultSideDescription}>
-          Your results are shown below based on the information you provided. To
-          adjust the results, edit the form and click “calculate repayments”
-          again.
-        </p>
-        {/* resultSideResultsContainer */}
-        <div className={styles.resultSideResultsContainer}>
-          <p className={styles.repaymentsText}>Your monthly repayments</p>
-          <p className={styles.repaymentsInfo}>
-            £{monthlyRepayment.toFixed(2)}
-          </p>
-          <span className={styles.divider}></span>
-          <p className={styles.repaymentsText}>
-            Total you'll repay over the term
-          </p>
-          <p className={styles.totalRepaymentsInfo}>
-            £{totalRepayments.toFixed(2)}
-          </p>
-        </div>
-        {/* <-----> */}
+        {monthlyRepayment === 0 || totalRepayments === 0 ? (
+          <PreResultsComponent />
+        ) : (
+          <ResultsComponent
+            monthlyRepayment={monthlyRepayment}
+            totalRepayments={totalRepayments}
+          />
+        )}
       </div>
       {/* <-----> */}
     </div>

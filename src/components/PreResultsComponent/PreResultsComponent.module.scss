@@ -1,0 +1,35 @@
+.preResultsComponent {
+  position: relative;
+  top: 20%;
+  display: grid;
+  justify-items: center;
+}
+
+.preResultsTitle {
+  margin-top: 16px;
+  margin-bottom: 0;
+  color: var(--color-white, #fff);
+  text-align: center;
+
+  /* desktop/text-preset-2 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-2, 24px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%; /* 30px */
+}
+
+.preResultsDescription {
+  margin-top: 16px;
+  margin-bottom: 0;
+
+  color: var(--color-slate-300, #9abed5);
+  text-align: center;
+
+  /* desktop/text-preset-4 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-4, 16px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 24px */
+}
