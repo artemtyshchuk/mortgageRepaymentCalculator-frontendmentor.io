@@ -48,11 +48,15 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
   };
 
   return (
-    <div className={styles.calculatorComponent}>
+    <div
+      className={styles.calculatorComponent}
+      data-testid="calculator-component"
+    >
       {/* formSideContainer */}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className={styles.formSideContainer}
+        data-testid="calculator-form"
       >
         {/* Header */}
         <div className={styles.formSideHeader}>
@@ -65,6 +69,7 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
               setMonthlyRepayment(0);
               setTotalRepayments(0);
             }}
+            data-testid="calculator-reset-button"
           >
             Clear All
           </button>
@@ -97,10 +102,13 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
               {...register("mortgageAmount", {
                 required: "This field is required",
               })}
+              data-testid="calculator-mortgageAmount"
             />
           </div>
           {mortgageAmountError && (
-            <p className={styles.errorText}>{mortgageAmountError}</p>
+            <p className={styles.errorText} data-testid="calculator-errorText">
+              {mortgageAmountError}
+            </p>
           )}
         </div>
         {/* <-----> */}
@@ -120,6 +128,7 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
                 {...register("mortgageTerm", {
                   required: "This field is required",
                 })}
+                data-testid="calculator-mortgageTerm"
               />
               <div
                 className={`${styles.inputLabelContainer} ${
@@ -136,13 +145,18 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
               </div>
             </div>
             {mortgageTermError && (
-              <p className={styles.errorText}>{mortgageAmountError}</p>
+              <p
+                className={styles.errorText}
+                data-testid="calculator-errorText"
+              >
+                {mortgageAmountError}
+              </p>
             )}
           </div>
           {/* <-----> */}
 
           {/* Interest Rate */}
-          <div>
+          <div className={styles.interestRateContainer}>
             <label className={styles.inputTitle}>Interest Rate</label>
             <div
               className={`${styles.inputContainers} ${
@@ -155,6 +169,7 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
                 {...register("interestRate", {
                   required: "This field is required",
                 })}
+                data-testid="calculator-interestRate"
               />
               <div
                 className={`${styles.inputLabelContainer} ${
@@ -171,7 +186,12 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
               </div>
             </div>
             {interestRateError && (
-              <p className={styles.errorText}>{mortgageAmountError}</p>
+              <p
+                className={styles.errorText}
+                data-testid="calculator-errorText"
+              >
+                {mortgageAmountError}
+              </p>
             )}
           </div>
 
@@ -198,6 +218,7 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
                 {...register("mortgageType", {
                   required: "This field is required",
                 })}
+                data-testid="calculator-mortgageType-repayment"
               />
               <span className={styles.inputRadioTitle}>Repayment</span>
             </label>
@@ -217,25 +238,36 @@ export const CalculatorComponent = ({}: CalculatorComponentProps) => {
                 {...register("mortgageType", {
                   required: "This field is required",
                 })}
+                data-testid="calculator-mortgageType-interestOnly"
               />
               <span className={styles.inputRadioTitle}>Interest Only</span>
             </label>
             {mortgageTypeError && (
-              <p className={styles.errorText}>{mortgageTypeError}</p>
+              <p
+                className={styles.errorText}
+                data-testid="calculator-errorText"
+              >
+                {mortgageTypeError}
+              </p>
             )}
             {/* <-----> */}
           </div>
 
           {/* <-----> */}
         </div>
-
-        <button type="submit" className={styles.calculateButton}>
-          <div>
-            {" "}
-            <CalculatorIcon />
-          </div>
-          <p className={styles.calculateButtonText}>Calculate Repayments</p>
-        </button>
+        <div className={styles.buttonContainer}>
+          <button
+            type="submit"
+            className={styles.calculateButton}
+            data-testid="calculator-calculateButton"
+          >
+            <div>
+              {" "}
+              <CalculatorIcon />
+            </div>
+            <p className={styles.calculateButtonText}>Calculate Repayments</p>
+          </button>
+        </div>
       </form>
       {/* <-----> */}
       {/* resultSideContainer */}

@@ -10,7 +10,7 @@ export const ResultsComponent = ({
   totalRepayments,
 }: ResultsComponentProps) => {
   return (
-    <div className={styles.resultsComponent}>
+    <div className={styles.resultsComponent} data-testid="resultsComponent">
       <p className={styles.resultSideTitle}>Your results</p>
       <p className={styles.resultSideDescription}>
         Your results are shown below based on the information you provided. To
@@ -25,7 +25,7 @@ export const ResultsComponent = ({
         <p className={styles.repaymentsText}>
           Total you'll repay over the term
         </p>
-        <p className={styles.totalRepaymentsInfo}>
+        <p className={styles.totalRepaymentsInfo} data-testid="totalRepayments">
           £{totalRepayments.toFixed(2)}
         </p>
       </div>

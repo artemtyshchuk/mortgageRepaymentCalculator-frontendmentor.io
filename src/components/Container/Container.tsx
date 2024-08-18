@@ -6,5 +6,9 @@ interface ContainerProps {
 }
 
 export const Container = ({ children }: ContainerProps) => {
-  return <div className={styles.container}>{children}</div>;
+  return (
+    <div className={styles.container} data-testid="container">
+      {children}
+    </div>
+  );
 };

@@ -210,7 +210,89 @@ input[type="radio"] {
   line-height: 125%; /* 22.5px */
 }
 
+.resultSideTitle {
+  color: var(--color-white, #fff);
+  /* desktop/text-preset-2 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-2, 24px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%; /* 30px */
+}
 
+.resultSideTitle {
+  color: var(--color-white, #fff);
+
+  /* desktop/text-preset-2 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-2, 24px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%; /* 30px */
+}
+
+.resultSideDescription {
+  color: var(--color-slate-300, #9abed5);
+
+  /* desktop/text-preset-4 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-4, 16px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 24px */
+  align-self: stretch;
+}
+
+.resultSideResultsContainer {
+  width: calc(100% - 64px);
+  padding: 32px;
+  border-radius: var(--spacing-100, 8px);
+  border-top: 4px solid var(--color-lime, #d8db2f);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.repaymentsText {
+  color: var(--color-slate-300, #9abed5);
+  margin: 0;
+  /* desktop/text-preset-4 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-4, 16px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 24px */
+}
+
+.repaymentsInfo {
+  color: var(--color-lime, #d8db2f);
+  margin: 0;
+  padding-top: 8px;
+  /* desktop/text-preset-1 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-1, 56px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%; /* 70px */
+}
+
+.divider {
+  display: flex;
+  height: 1px;
+  width: 100%;
+  margin: 32px 0;
+  background: rgba(154, 190, 213, 0.25);
+}
+
+.totalRepaymentsInfo {
+  color: var(--color-white, #fff);
+  margin: 0;
+  padding-top: 8px;
+  /* desktop/text-preset-2 */
+  font-family: "Plus Jakarta Sans";
+  font-size: var(--font-size-text-preset-2, 24px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%; /* 30px */
+}
 
 .errorText {
   color: var(--color-red, #d73328);
@@ -233,4 +315,71 @@ input[type="radio"] {
 
 .errorInputMark {
   color: white;
+}
+
+@media (max-width: 1200px) {
+  //993
+  .inputContainers {
+    grid-template-columns: 135px 1fr;
+  }
+}
+
+@media (max-width: 992px) {
+  //769
+  .calculatorComponent {
+    display: flex;
+    flex-direction: column;
+    margin-top: 8%;
+    background-color: #fff;
+    border-radius: 24px;
+  }
+  .inputContainers {
+    grid-template-columns: 236px 1fr;
+  }
+  .resultSideContainer {
+    border-radius: 0px 0px 17px 17px;
+  }
+}
+
+@media (max-width: 768px) {
+  //577
+  .formSideContainer {
+    padding: 20px;
+  }
+  .inputContainers {
+    grid-template-columns: 70% 30%;
+  }
+  .mortgageTermAndInterestRateContainer {
+    grid-template-columns: repeat(2, 47%);
+    column-gap: 6%;
+  }
+}
+
+@media (max-width: 576px) {
+  .formSideHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: start;
+  }
+  .inputContainer {
+    display: grid;
+    grid-template-columns: 20% 80%;
+  }
+  .mortgageTermAndInterestRateContainer {
+    grid-template-columns: 100%;
+  }
+  .resultSideContainer {
+    padding: 20px;
+  }
+  .interestRateContainer {
+    margin-top: 24px;
+  }
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+  }
+  .calculateButton {
+    align-items: center;
+  }
 }

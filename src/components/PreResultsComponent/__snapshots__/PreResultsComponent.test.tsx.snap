@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PreResultsComponent should render component correctly 1`] = `
+<div
+  class="preResultsComponent"
+  data-testid="preResults"
+>
+  <svg>
+    Layer_1.svg
+  </svg>
+  <p
+    class="preResultsTitle"
+  >
+    Results shown here
+  </p>
+  <p
+    class="preResultsDescription"
+  >
+    Complete the form and click “calculate repayments” to see what your monthly repayments would be.
+  </p>
+</div>
+`;

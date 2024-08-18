@@ -5,7 +5,7 @@ interface PreResultsComponentProps {}
 
 export const PreResultsComponent = ({}: PreResultsComponentProps) => {
   return (
-    <div className={styles.preResultsComponent}>
+    <div className={styles.preResultsComponent} data-testid="preResults">
       <PreResultIcon />
       <p className={styles.preResultsTitle}>Results shown here</p>
       <p className={styles.preResultsDescription}>

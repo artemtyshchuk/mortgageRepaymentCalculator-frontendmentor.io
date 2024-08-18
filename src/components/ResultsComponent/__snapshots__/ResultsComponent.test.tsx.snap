@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultsComponent renders the component with the correct data 1`] = `
+<div
+  class="resultsComponent"
+  data-testid="resultsComponent"
+>
+  <p
+    class="resultSideTitle"
+  >
+    Your results
+  </p>
+  <p
+    class="resultSideDescription"
+  >
+    Your results are shown below based on the information you provided. To adjust the results, edit the form and click “calculate repayments” again.
+  </p>
+  <div
+    class="resultSideResultsContainer"
+  >
+    <p
+      class="repaymentsText"
+    >
+      Your monthly repayments
+    </p>
+    <p
+      class="repaymentsInfo"
+    >
+      £
+      123.45
+    </p>
+    <span
+      class="divider"
+    />
+    <p
+      class="repaymentsText"
+    >
+      Total you'll repay over the term
+    </p>
+    <p
+      class="totalRepaymentsInfo"
+      data-testid="totalRepayments"
+    >
+      £
+      6789.01
+    </p>
+  </div>
+</div>
+`;
